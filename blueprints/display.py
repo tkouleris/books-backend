@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 
+from repositories import toread_repository
 from repositories.readings_repository import ReadingsRepository
 from repositories.user_repository import UserRepository
 
@@ -28,11 +29,17 @@ def show(username):
     for latest_reading in latest_readings_db:
         latest_readings.append(latest_reading.serialize())
 
+    book_list = toread_repository.find_by_user(user.id)
+    to_read = []
+    for book in book_list:
+        to_read.append(book.serialize())
+
     return jsonify({
         'success': True,
         'data':{
             'user': user.serialize(),
             'current_readings':current_readings,
-            'latest_readings': latest_readings
+            'latest_readings': latest_readings,
+            'to_read': to_read,
         }
     }), 200

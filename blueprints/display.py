@@ -23,7 +23,7 @@ def show(username):
     for current_reading in current_readings_db:
         current_readings.append(current_reading.serialize())
 
-    latest_readings_db = readings_repository.find_latest_finished(user.id, 3)
+    latest_readings_db = readings_repository.find_latest_finished(user.id, 12)
     latest_readings = []
     for latest_reading in latest_readings_db:
         latest_readings.append(latest_reading.serialize())

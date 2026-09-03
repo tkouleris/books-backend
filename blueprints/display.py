@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 
-from repositories import toread_repository
+from repositories.toread_repository import ToReadRepository
 from repositories.readings_repository import ReadingsRepository
 from repositories.user_repository import UserRepository
 
@@ -8,6 +8,7 @@ display = Blueprint('display', __name__)
 
 user_repository = UserRepository()
 readings_repository = ReadingsRepository()
+toread_repository = ToReadRepository()
 
 
 @display.route("/api/display/<username>", methods=['GET'])
